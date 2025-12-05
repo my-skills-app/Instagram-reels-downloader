@@ -29,14 +29,12 @@ export async function POST(request: Request) {
     const data = await response.json();
     
     // Transform the response to desired format
+    const timestamp = Date.now();
     const transformedData = {
-      source: data.source,
-      title: data.title,
-      thumbnail: data.thumbnail,
-      video_quality: data.medias?.find((media: any) => media.type === 'video' && media.quality === 'mp4 (360p)')?.quality || 'mp4 (360p)',
-      video_url: data.medias?.find((media: any) => media.type === 'video' && media.quality === 'mp4 (360p)')?.url || '',
-      audio_url: data.medias?.find((media: any) => media.type === 'audio' && media.quality === 'opus (154kb/s)')?.url || '',
-      audioQuality: data.medias?.find((media: any) => media.type === 'audio' && media.quality === 'opus (154kb/s)')?.audioQuality || ''
+      filename: `yt-downloader-${timestamp}.mp4`,
+      width: "480",
+      height: "854",
+      videoUrl: data.medias?.find((media: any) => media.type === 'video' && media.quality === 'mp4 (360p)')?.url || ''
     };
     
     const successResponse = makeSuccessResponse(transformedData);
@@ -77,14 +75,12 @@ export async function GET(request: Request) {
     const data = await response.json();
     
     // Transform the response to desired format
+    const timestamp = Date.now();
     const transformedData = {
-      source: data.source,
-      title: data.title,
-      thumbnail: data.thumbnail,
-      video_quality: data.medias?.find((media: any) => media.type === 'video' && media.quality === 'mp4 (360p)')?.quality || 'mp4 (360p)',
-      video_url: data.medias?.find((media: any) => media.type === 'video' && media.quality === 'mp4 (360p)')?.url || '',
-      audio_url: data.medias?.find((media: any) => media.type === 'audio' && media.quality === 'opus (154kb/s)')?.url || '',
-      audioQuality: data.medias?.find((media: any) => media.type === 'audio' && media.quality === 'opus (154kb/s)')?.audioQuality || ''
+      filename: `yt-downloader-${timestamp}.mp4`,
+      width: "480",
+      height: "854",
+      videoUrl: data.medias?.find((media: any) => media.type === 'video' && media.quality === 'mp4 (360p)')?.url || ''
     };
     
     const successResponse = makeSuccessResponse(transformedData);
